@@ -1,0 +1,19 @@
+# Platform-owned team registry
+teams:
+  team-001:
+    name: Alpha
+    role_name: team-alpha-dev-storage
+    environment: dev
+    tags:
+      CostCenter: team-001
+    operator_arns:
+      - arn:aws:iam::123456789012:role/alpha-admin
+
+  team-002:
+    name: Beta
+    role_name: team-beta-dev-storage
+    environment: dev
+    tags:
+      CostCenter: some-product
+    operator_arns:
+      - arn:aws:iam::123456789012:user/beta-operator

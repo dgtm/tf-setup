@@ -1,0 +1,18 @@
+team_id: team-002
+aws_region: eu-central-1
+environment: dev
+tags:
+  Project: beta-storage
+
+buckets:
+  assets:
+    name: assets
+    public: false
+    tags:
+      Purpose: assets
+
+  backups:
+    name: backups
+    public: false
+    tags:
+      Purpose: backups

@@ -1,0 +1,14 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+!/teams/platform/terraform.tfvars
+crash.log
+crash.*.log
+.terraform-teams/
+state/
+__pycache__/
+
+.venv/

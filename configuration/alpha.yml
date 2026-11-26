@@ -1,0 +1,17 @@
+team_id: team-001
+aws_region: eu-central-1
+environment: dev
+tags:
+  Project: alpha-storage
+
+buckets:
+  assets:
+    name: assets
+    public: false
+
+  logs:
+    name: logs
+    public: false
+    tags:
+      Purpose: logs
+      CostCenter: team-002

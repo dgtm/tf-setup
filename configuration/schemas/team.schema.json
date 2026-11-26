@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Team infrastructure configuration",
+  "type": "object",
+  "required": ["team_id", "aws_region", "buckets"],
+  "additionalProperties": false,
+  "properties": {
+    "team_id": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+    },
+    "aws_region": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*-[0-9]+$"
+    },
+    "environment": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,15}$"
+    },
+    "tags": { "$ref": "#/$defs/tags" },
+    "buckets": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "type": "string", "minLength": 1 },
+      "additionalProperties": { "$ref": "#/$defs/bucket" }
+    }
+  },
+  "$defs": {
+    "tags": {
+      "type": "object",
+      "propertyNames": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "additionalProperties": { "type": "string", "maxLength": 256 }
+    },
+    "bucket": {
+      "type": "object",
+      "required": ["name", "public"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 36,
+          "pattern": "^(?!xn--)(?!sthree-)(?!amzn-s3-demo-)(?!.*\\.\\.)[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$"
+        },
+        "public": { "type": "boolean" },
+        "versioning_enabled": { "type": "boolean" },
+        "force_destroy": { "type": "boolean" },
+        "allowed_role_arns": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^arn:[a-z][a-z0-9-]*:iam::[0-9]{12}:role/[A-Za-z0-9_+=,.@/-]*[A-Za-z0-9_+=,.@-]$"
+          }
+        },
+        "tags": { "$ref": "#/$defs/tags" }
+      }
+    }
+  }
+}
