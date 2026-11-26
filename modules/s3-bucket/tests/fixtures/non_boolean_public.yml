@@ -1,0 +1,5 @@
+team_id: team-001
+buckets:
+  assets:
+    name: assets
+    public: "true"
